@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Color system ---- */
+  --color-bg: #0A0A0B;
+  --color-carbon: #0D0D0F;
+  --color-surface: #131316;
+  --color-surface-2: #1B1B1F;
+  --color-ink: #F4F4F1;
+  --color-grey: #9A9AA1;
+  --color-grey-dim: #5C5C63;
+  --color-red: #E30613;
+  --color-red-dim: #8C0810;
+  --color-red-glow: #FF2D3D;
+  --color-line: rgba(244, 244, 241, 0.08);
+  --color-line-strong: rgba(244, 244, 241, 0.16);
+  --color-online: #22D68A;
+  --color-warning: #F2A93B;
+  --color-dev: #4FA3E0;
+
+  /* ---- Type ---- */
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* ---- Motion ---- */
+  --ease-mech: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --animate-blink: blink 1.4s step-end infinite;
+  --animate-scan: scan 6s linear infinite;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-red);
+  color: var(--color-ink);
+}
+
+/* Focus visibility for keyboard nav */
+:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 3px;
+}
+
+/* Thin technical scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-surface-2); border: 1px solid var(--color-line); }
+
+/* Utility layer additions */
+.text-display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.custom-cursor, .custom-cursor * {
+  cursor: none !important;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor, .custom-cursor * {
+    cursor: auto !important;
+  }
+}
