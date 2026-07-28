@@ -68,19 +68,24 @@ export const machineSystems: MachineSystem[] = [
 ];
 
 /**
- * EDIT ME — do not invent certifications, issuers, or credential IDs.
+ * EDIT ME — verified certifications only.
  */
 export const certifications: Certification[] = [
   {
-    id: "cert-placeholder-1",
-    name: "[ADD CERTIFICATION NAME]",
-    issuer: "[ADD ISSUER]",
-    date: "[ADD DATE]",
-    credentialUrl: "[ADD CREDENTIAL URL]",
-    skills: ["[ADD SKILL]", "[ADD SKILL]"],
+    id: "paloalto-cybersecurity-fundamentals",
+    name: "Cybersecurity Fundamentals",
+    issuer: "Palo Alto Networks Academy",
+    date: "November 20, 2025",
+    skills: ["Cybersecurity Fundamentals"],
+  },
+  {
+    id: "paloalto-network-security-fundamentals",
+    name: "Network Security Fundamentals",
+    issuer: "Palo Alto Networks Academy",
+    date: "April 16, 2026",
+    skills: ["Network Security"],
   },
 ];
-
 export const developmentItems: DevelopmentItem[] = [
   { id: "dev-1", title: "AI Security Copilot", status: "development", phase: "Prototype" },
   { id: "dev-2", title: "Cloud Security", status: "learning" },
