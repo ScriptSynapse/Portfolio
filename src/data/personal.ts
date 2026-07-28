@@ -23,7 +23,7 @@ export const personal: PersonalInfo = {
   email: "paulsonfernandes.dev@gmail.com",
   githubUrl: "https://github.com/ScriptSynapse",
   linkedinUrl: "[ADD LINKEDIN URL]",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "  resumeUrl: "C:\\Users\\hp\\Documents\\Portfolio\\src\\assets\\Paulson Resume.pdf",
   status: "online",
 };
 
