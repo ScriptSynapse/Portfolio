@@ -13,10 +13,10 @@ export const personal: PersonalInfo = {
   firstName: "Paulson Alex",
   lastName: "Fernandes",
   driverNumber: "25",
-  role: "Computer Science Student",
+  role: "CyberSecurity and Forensics",
   disciplines: ["Cybersecurity", "Software Engineering", "AI"],
   location: "Pune, India",
-  education: "B.Tech in Computer Science and Engineering(CyberSecurity an Forenscics) at MIT-World Peace University, Pune, India",
+  education: "B.Tech in Computer Science and Engineering(CyberSecurity an Forensics) at MIT-World Peace University, Pune, India",
   currentFocus: "AI-assisted security tooling & cloud security",
   bio:
     "Computer Science student building at the intersection of cybersecurity, artificial intelligence and software engineering. Focused on cloud security posture, threat detection, and practical tools that help teams find and fix risk faster — from penetration-testing labs to AI copilots that explain findings in plain language. Comfortable moving between offense (CTFs, network analysis) and defense (SIEM, monitoring, remediation), with a growing interest in applying machine learning to anomaly and threat detection.",
