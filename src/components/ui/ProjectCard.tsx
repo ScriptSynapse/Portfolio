@@ -1,92 +1,111 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import { GithubIcon } from "./BrandIcons";
 import type { Project } from "../../types/portfolio";
-import { StatusDot } from "./StatusDot";
+import { GithubIcon } from "./BrandIcons";
+import { TelemetrySparkline } from "./TelemetrySparkline";
 
-export function ProjectCard({ project }: { project: Project }) {
-  const [open, setOpen] = useState(false);
+const statusStyles: Record<Project["status"], string> = {
+  online: "border-online/40 bg-online/10 text-online",
+  active: "border-online/40 bg-online/10 text-online",
+  development: "border-warning/40 bg-warning/10 text-warning",
+  learning: "border-dev/40 bg-dev/10 text-dev",
+  planned: "border-grey-dim/40 bg-grey-dim/10 text-grey",
+};
+
+const statusLabel: Record<Project["status"], string> = {
+  online: "SHIPPED",
+  active: "SHIPPED",
+  development: "DEVELOPMENT",
+  learning: "LEARNING",
+  planned: "PLANNED",
+};
+
+export function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const pfId = "PF-" + String(index + 1).padStart(3, "0");
 
   return (
-    <motion.article
-      layout
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      exit={{ opacity: 0, y: 12 }}
-      transition={{ duration: 0.35, ease: [0.65, 0, 0.35, 1] }}
-      data-cursor-view
-      onClick={() => setOpen((v) => !v)}
-      className="group relative border border-line bg-surface/50 hover:border-line-strong transition-colors duration-200 p-6 flex flex-col cursor-pointer md:cursor-none"
-    >
-      <span className="absolute top-0 left-0 h-[2px] w-0 bg-red group-hover:w-full transition-[width] duration-300 ease-out" />
-
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="text-display text-2xl font-semibold text-ink">{project.title}</h3>
-        <StatusDot status={project.status} />
-      </div>
-
-      <p className="mt-2 text-sm text-grey">{project.tagline}</p>
-
-      <div className="mt-5 grid grid-cols-3 gap-3 text-mono text-[10px] tracking-[0.15em]">
-        <div>
-          <div className="text-grey-dim">CLASS</div>
-          <div className="text-ink mt-1">{project.engineClass}</div>
-        </div>
-        <div>
-          <div className="text-grey-dim">ENGINE</div>
-          <div className="text-ink mt-1">{project.engine}</div>
-        </div>
-        {project.intelligence && (
-          <div>
-            <div className="text-grey-dim">INTELLIGENCE</div>
-            <div className="text-ink mt-1">{project.intelligence}</div>
-          </div>
-        )}
-      </div>
-
-      <div
-        className={`grid transition-all duration-300 ease-out overflow-hidden ${
-          open ? "grid-rows-[1fr] opacity-100 mt-5" : "grid-rows-[0fr] opacity-0 mt-0 md:group-hover:grid-rows-[1fr] md:group-hover:opacity-100 md:group-hover:mt-5"
-        }`}
+      <article
+          data-cursor-view
+          className="group relative flex flex-col border border-line bg-carbon hover:border-line-strong transition-colors duration-200 md:cursor-none"
       >
-        <div className="min-h-0">
-          <p className="text-sm text-grey leading-relaxed pb-4">{project.description}</p>
-          <div className="flex flex-wrap gap-2 pb-4">
-            {project.technologies.map((t) => (
-              <span key={t} className="text-mono text-[10px] tracking-wider border border-line px-2 py-1 text-grey">
+        <div className="flex items-center justify-between gap-2 px-5 pt-5">
+          <div className="flex items-center gap-2">
+          <span className="text-mono text-[10px] tracking-wider border border-red/50 text-red px-2 py-0.5">
+            {pfId}
+          </span>
+            <span className={"inline-flex items-center gap-1.5 text-mono text-[10px] tracking-wider border px-2 py-0.5 " + statusStyles[project.status]}>
+            <span className="h-1.5 w-1.5 rounded-full bg-current" />
+              {statusLabel[project.status]}
+          </span>
+          </div>
+          <span className="text-mono text-[10px] tracking-[0.2em] text-grey-dim">{project.category[0]}</span>
+        </div>
+
+        <div className="px-3 mt-3">
+          <TelemetrySparkline seed={index} />
+        </div>
+
+        <div className="border-t border-line mt-1 p-5 flex flex-col flex-1">
+          <h3 className="text-display text-xl font-bold text-ink">{project.title}</h3>
+          <p className="mt-2 text-sm text-grey leading-relaxed">{project.description}</p>
+
+          <div className="grid grid-cols-2 gap-3 mt-5">
+            <div className="border border-line p-3">
+              <div className="text-mono text-[9px] tracking-[0.2em] text-grey-dim">CLASS</div>
+              <div className="text-ink text-sm font-semibold mt-1">{project.engineClass}</div>
+            </div>
+            <div className="border border-line p-3">
+              <div className="text-mono text-[9px] tracking-[0.2em] text-grey-dim">ENGINE</div>
+              <div className="text-ink text-sm font-semibold mt-1">{project.engine}</div>
+            </div>
+            {project.intelligence ? (
+                <div className="border border-line p-3">
+                  <div className="text-mono text-[9px] tracking-[0.2em] text-grey-dim">AI</div>
+                  <div className="text-ink text-sm font-semibold mt-1">{project.intelligence}</div>
+                </div>
+            ) : null}
+            <div className="border border-line p-3">
+              <div className="text-mono text-[9px] tracking-[0.2em] text-grey-dim">STATUS</div>
+              <div className={"text-sm font-semibold mt-1 " + statusStyles[project.status].split(" ").pop()}>
+                {statusLabel[project.status]}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2 mt-4">
+            {project.technologies.map(function (t) {
+              return (
+                  <span key={t} className="text-mono text-[10px] tracking-wider border border-line px-2 py-1 text-grey">
                 {t}
               </span>
-            ))}
+              );
+            })}
+          </div>
+
+          <div className={"grid gap-3 mt-5 " + (project.demoUrl ? "grid-cols-2" : "grid-cols-1")}>
+            {project.githubUrl ? (
+                <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 border border-line hover:border-line-strong px-4 py-2.5 text-mono text-[11px] tracking-[0.15em] text-ink transition-colors"
+                >
+                  <GithubIcon className="h-[14px] w-[14px]" />
+                  {" GITHUB"}
+                </a>
+            ) : null}
+            {project.demoUrl ? (
+                <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 border border-red text-red hover:bg-red/10 px-4 py-2.5 text-mono text-[11px] tracking-[0.15em] transition-colors"
+                >
+                  <ExternalLink size={14} />
+                  {" LIVE"}
+                </a>
+            ) : null}
           </div>
         </div>
-      </div>
-
-      <div className="mt-auto pt-4 flex items-center gap-5 border-t border-line">
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            onClick={(e) => e.stopPropagation()}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-mono text-[11px] tracking-[0.15em] text-grey hover:text-ink transition-colors"
-          >
-            <GithubIcon className="h-[14px] w-[14px]" /> GITHUB
-          </a>
-        )}
-        {project.demoUrl && (
-          <a
-            href={project.demoUrl}
-            onClick={(e) => e.stopPropagation()}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-mono text-[11px] tracking-[0.15em] text-red hover:text-red-glow transition-colors"
-          >
-            <ExternalLink size={14} /> LIVE DEMO
-          </a>
-        )}
-      </div>
-    </motion.article>
+      </article>
   );
 }
