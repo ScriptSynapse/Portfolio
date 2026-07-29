@@ -112,28 +112,6 @@ Open the local address displayed by Vite in your browser.
 
 ---
 
-## 📦 Production Build
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
-The production files will be generated inside:
-
-```text
-dist/
-```
-
----
-
 ## ⚙️ Customising the Portfolio
 
 Most portfolio information can be changed without modifying the main UI components.
