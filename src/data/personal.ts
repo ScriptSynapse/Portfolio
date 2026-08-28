@@ -22,7 +22,7 @@ export const personal: PersonalInfo = {
     "Computer Science student building at the intersection of cybersecurity, artificial intelligence and software engineering. Focused on cloud security posture, threat detection, and practical tools that help teams find and fix risk faster — from penetration-testing labs to AI copilots that explain findings in plain language. Comfortable moving between offense (CTFs, network analysis) and defense (SIEM, monitoring, remediation), with a growing interest in applying machine learning to anomaly and threat detection.",
   email: "paulsonfernandes.dev@gmail.com",
   githubUrl: "https://github.com/ScriptSynapse",
-  linkedinUrl: "www.linkedin.com/in/paulson-alex-fernandes-754710378",
+      linkedinUrl: "https://www.linkedin.com/in/paulson-alex-fernandes-754710378",
   resumeUrl:  "/Paulson Resume.pdf",
   status: "online",
 };
