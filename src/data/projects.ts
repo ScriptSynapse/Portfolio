@@ -48,4 +48,5 @@ export const projects: Project[] = [
     technologies: ["JavaScript", "Web Crypto API", "AES-256-GCM", "PBKDF2"],
     githubUrl: "https://github.com/ScriptSynapse/Secure-Password-Generator",
   },
+
 ];
