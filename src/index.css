@@ -60,11 +60,28 @@ html {
 }
 
 body {
-  background: var(--color-bg);
+  background:
+          radial-gradient(ellipse 90% 60% at 50% -10%, rgba(227, 6, 19, 0.06), transparent 60%),
+          radial-gradient(ellipse 70% 50% at 100% 100%, rgba(244, 244, 241, 0.03), transparent 60%),
+          var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle film-grain texture — adds tactile, premium depth without being noisy */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
 }
 
 ::selection {
@@ -96,8 +113,8 @@ body {
 
 .bg-grid {
   background-image:
-    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+          linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
@@ -109,4 +126,41 @@ body {
   .custom-cursor, .custom-cursor * {
     cursor: auto !important;
   }
+}
+
+/* ---- Premium interaction utilities ---- */
+
+/* Soft, colored glow shadow used on hover for cards, buttons, badges */
+.glow-hover {
+  transition: box-shadow 0.35s var(--ease-mech), transform 0.35s var(--ease-mech), border-color 0.2s ease;
+}
+.glow-hover:hover {
+  box-shadow: 0 20px 60px -20px rgba(227, 6, 19, 0.35), 0 0 0 1px rgba(244, 244, 241, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Diagonal light-sheen sweep for premium button/card hover feedback */
+.sheen {
+  position: relative;
+  overflow: hidden;
+}
+.sheen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.65s var(--ease-mech);
+  pointer-events: none;
+}
+.sheen:hover::after {
+  left: 130%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-hover:hover { transform: none; }
+  .sheen::after { display: none; }
 }

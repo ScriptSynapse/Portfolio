@@ -85,7 +85,29 @@ export const certifications: Certification[] = [
     date: "April 16, 2026",
     skills: ["Network Security"],
   },
+  {
+    id: "hackerrank-python-basic",
+    name: "Python (Basic)",
+    issuer: "HackerRank",
+    date: "November 28, 2025",
+    skills: ["Python"],
+  },
+  {
+    id: "hackerrank-problem-solving-basic",
+    name: "Problem Solving (Basic)",
+    issuer: "HackerRank",
+    date: "November 3, 2025",
+    skills: ["Problem Solving"],
+  },
+  {
+    id: "hackerrank-software-engineer-intern",
+    name: "Software Engineer Intern",
+    issuer: "HackerRank",
+    date: "September 10, 2026",
+    skills: ["Software Engineering"],
+  },
 ];
+
 export const developmentItems: DevelopmentItem[] = [
   { id: "dev-1", title: "AI Security Copilot", status: "development", phase: "Prototype" },
   { id: "dev-2", title: "Cloud Security", status: "learning" },

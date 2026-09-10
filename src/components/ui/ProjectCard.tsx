@@ -25,7 +25,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
   return (
       <article
           data-cursor-view
-          className="group relative flex flex-col border border-line bg-carbon hover:border-line-strong transition-colors duration-200 md:cursor-none"
+          className="glow-hover group relative flex flex-col border border-line bg-carbon hover:border-line-strong transition-colors duration-200 md:cursor-none"
       >
         <div className="flex items-center justify-between gap-2 px-5 pt-5">
           <div className="flex items-center gap-2">

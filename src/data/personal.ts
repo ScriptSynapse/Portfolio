@@ -9,27 +9,27 @@ import type { PersonalInfo, StatItem } from "../types/portfolio";
  * ----------------------------------------------------------------
  */
 export const personal: PersonalInfo = {
-  name: "Paulson Alex Fernandes",
-  firstName: "Paulson Alex",
+  name: "Paulson Fernandes",
+  firstName: "Paulson",
   lastName: "Fernandes",
   driverNumber: "25",
-  role: "CyberSecurity and Forensics",
+  role: "Computer Science Student",
   disciplines: ["Cybersecurity", "Software Engineering", "AI"],
-  location: "Pune, India",
-  education: "B.Tech in Computer Science and Engineering(CyberSecurity an Forensics) at MIT-World Peace University, Pune, India",
+  location: "[ADD LOCATION]",
+  education: "B.Tech in Computer Science and Engineering (Cybersecurity and Forensics), MIT-World Peace University — July 2025–Present",
   currentFocus: "AI-assisted security tooling & cloud security",
   bio:
-    "Computer Science student building at the intersection of cybersecurity, artificial intelligence and software engineering. Focused on cloud security posture, threat detection, and practical tools that help teams find and fix risk faster — from penetration-testing labs to AI copilots that explain findings in plain language. Comfortable moving between offense (CTFs, network analysis) and defense (SIEM, monitoring, remediation), with a growing interest in applying machine learning to anomaly and threat detection.",
-  email: "paulsonfernandes.dev@gmail.com",
-  githubUrl: "https://github.com/ScriptSynapse",
-      linkedinUrl: "https://www.linkedin.com/in/paulson-alex-fernandes-754710378",
-  resumeUrl:  "/Paulson_Alex_Fernandes_Resume.pdf",
+      "Computer Science student building at the intersection of cybersecurity, artificial intelligence and software engineering. Focused on cloud security posture, threat detection, and practical tools that help teams find and fix risk faster — from penetration-testing labs to AI copilots that explain findings in plain language. Comfortable moving between offense (CTFs, network analysis) and defense (SIEM, monitoring, remediation), with a growing interest in applying machine learning to anomaly and threat detection.",
+  email: "azurepaulson06@gmail.com",
+  githubUrl: "https://github.com/ScriptSynapse1",
+  linkedinUrl: "https://www.linkedin.com/in/paulson-fernandes-754710378",
+  resumeUrl: "/resume.pdf",
   status: "online",
 };
 
 export const stats: StatItem[] = [
   { label: "Projects", value: 3 },
-  { label: "Certifications", value: 4 },
+  { label: "Certifications", value: 5 },
   { label: "Technologies", value: 18 },
   { label: "CTFs / Labs", value: 12 },
 ];
