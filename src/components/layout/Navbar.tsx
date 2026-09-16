@@ -8,9 +8,10 @@ import { StatusDot } from "../ui/StatusDot";
 
 interface NavbarProps {
   activeId: string;
+  onNavigate: (id: string) => void;
 }
 
-export function Navbar({ activeId }: NavbarProps) {
+export function Navbar({ activeId, onNavigate }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -23,7 +24,7 @@ export function Navbar({ activeId }: NavbarProps) {
 
   const goTo = (id: string) => {
     setMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    onNavigate(id);
   };
 
   return (

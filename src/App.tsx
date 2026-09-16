@@ -20,12 +20,14 @@ import { Contact } from "./components/sections/Contact";
 import { useScrollTelemetry } from "./hooks/useScrollTelemetry";
 import { useReducedMotion } from "./hooks/useReducedMotion";
 import { useDrsEasterEgg } from "./hooks/useDrsEasterEgg";
+import { useSectionRouting } from "./hooks/useSectionRouting";
 
 function App() {
   const [introDone, setIntroDone] = useState(false);
   const { activeIndex, activeId, progress } = useScrollTelemetry();
   const reducedMotion = useReducedMotion();
   const drsActive = useDrsEasterEgg(reducedMotion);
+  const { navigateToSection } = useSectionRouting(activeId, introDone);
 
   return (
     <>
@@ -37,7 +39,7 @@ function App() {
         style={{ opacity: introDone ? 1 : 0, transition: "opacity 0.4s ease" }}
         aria-hidden={!introDone}
       >
-        <Navbar activeId={activeId} />
+        <Navbar activeId={activeId} onNavigate={navigateToSection} />
         <LapIndicator activeIndex={activeIndex} progress={progress} />
         <MobileLapIndicator activeIndex={activeIndex} progress={progress} />
         <TelemetryHUD activeIndex={activeIndex} progress={progress} drsActive={drsActive} />
