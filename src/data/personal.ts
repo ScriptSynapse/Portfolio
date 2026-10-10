@@ -10,12 +10,12 @@ import type { PersonalInfo, StatItem } from "../types/portfolio";
  */
 export const personal: PersonalInfo = {
   name: "Paulson Fernandes",
-  firstName: "Paulson",
+  firstName: "Paulson Alex",
   lastName: "Fernandes",
   driverNumber: "25",
   role: "Computer Science Student",
   disciplines: ["Cybersecurity", "Software Engineering", "AI"],
-  location: "[ADD LOCATION]",
+  location: "Pune, India",
   education: "B.Tech in Computer Science and Engineering (Cybersecurity and Forensics), MIT-World Peace University — July 2025–Present",
   currentFocus: "AI-assisted security tooling & cloud security",
   bio:
@@ -23,7 +23,7 @@ export const personal: PersonalInfo = {
   email: "azurepaulson06@gmail.com",
   githubUrl: "https://github.com/ScriptSynapse1",
   linkedinUrl: "https://www.linkedin.com/in/paulson-fernandes-754710378",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/Paulson_Alex_Fernandes_Resume.pdf",
   status: "online",
 };
 
