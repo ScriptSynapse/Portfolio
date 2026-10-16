@@ -48,5 +48,18 @@ export const projects: Project[] = [
     technologies: ["JavaScript", "Web Crypto API", "AES-256-GCM", "PBKDF2"],
     githubUrl: "https://github.com/ScriptSynapse/Secure-Password-Generator",
   },
-
+  {
+    id: "forge-x",
+    title: "FORGE-X: Digital Forensics Evidence Management System",
+    tagline: "Secure. Track. Investigate. Maintain Integrity.",
+    description:
+      "A digital forensics lab platform for case management, evidence registration, and SHA-256 integrity verification with an append-only chain of custody. Enforces role-based access control with full audit logging, runs independently reviewed examinations, generates PDF forensic reports and investigation analytics, and scans evidence with YARA-X in an isolated worker — backed by MySQL triggers, views, and stored procedures.",
+    category: ["SECURITY", "SOFTWARE"],
+    engineClass: "Digital Forensics",
+    engine: "Python / Flask",
+    status: "active",
+    technologies: ["Python", "Flask", "MySQL", "Bootstrap 5", "Chart.js", "ReportLab", "Docker"],
+    githubUrl: "https://github.com/ScriptSynapse/Forge-X",
+    featured: true,
+  },
 ];
