@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { personal } from "../../data/personal";
@@ -10,6 +11,9 @@ const easeMech = [0.65, 0, 0.35, 1] as const;
 export function Hero() {
   const primaryMagnet = useMagneticHover<HTMLAnchorElement>(0.25);
   const secondaryMagnet = useMagneticHover<HTMLAnchorElement>(0.2);
+  const [photoFailed, setPhotoFailed] = useState(false);
+  const showPhoto = Boolean(personal.photoUrl) && !photoFailed;
+  const initials = `${personal.firstName[0] ?? ""}${personal.lastName[0] ?? ""}`.toUpperCase();
 
   return (
       <section id="home" className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-24 pb-16">
@@ -112,6 +116,30 @@ export function Hero() {
               transition={{ duration: 0.5, ease: easeMech, delay: 0.9 }}
               className="w-full lg:w-72 border border-line bg-surface/60 backdrop-blur-sm p-5 text-mono text-xs tracking-wider shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]"
           >
+            <div className="relative mb-4 aspect-[4/5] overflow-hidden border border-line bg-carbon">
+              {showPhoto ? (
+                  <img
+                      src={personal.photoUrl}
+                      alt={`Portrait of ${personal.name}`}
+                      onError={() => setPhotoFailed(true)}
+                      className="h-full w-full object-cover object-top grayscale-[15%] contrast-[1.05]"
+                      loading="eager"
+                      decoding="async"
+                  />
+              ) : (
+                  <div className="h-full w-full flex items-center justify-center bg-[linear-gradient(160deg,var(--color-surface-2),var(--color-carbon))]">
+                    <span className="text-display text-6xl font-bold text-grey-dim">{initials}</span>
+                  </div>
+              )}
+              {/* bottom fade + number plate, F1 driver-card style */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg/90 to-transparent" />
+              <span className="pointer-events-none absolute bottom-2 right-3 text-display text-4xl font-bold text-red drop-shadow-[0_0_20px_rgba(227,6,19,0.5)]">
+                {personal.driverNumber}
+              </span>
+              {/* corner brackets */}
+              <span className="pointer-events-none absolute top-0 left-0 h-3 w-3 border-t-2 border-l-2 border-red" />
+              <span className="pointer-events-none absolute top-0 right-0 h-3 w-3 border-t-2 border-r-2 border-red" />
+            </div>
             <div className="flex items-center justify-between pb-3 border-b border-line">
               <span className="text-grey-dim">DRIVER</span>
               <span className="text-display text-2xl font-bold text-red">{personal.driverNumber}</span>

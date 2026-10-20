@@ -21,9 +21,13 @@ export const personal: PersonalInfo = {
   bio:
       "Computer Science student building at the intersection of cybersecurity, artificial intelligence and software engineering. Focused on cloud security posture, threat detection, and practical tools that help teams find and fix risk faster — from penetration-testing labs to AI copilots that explain findings in plain language. Comfortable moving between offense (CTFs, network analysis) and defense (SIEM, monitoring, remediation), with a growing interest in applying machine learning to anomaly and threat detection.",
   email: "azurepaulson06@gmail.com",
-  githubUrl: "https://github.com/ScriptSynapse1",
+  githubUrl: "https://github.com/ScriptSynapse",
   linkedinUrl: "https://www.linkedin.com/in/paulson-fernandes-754710378",
   resumeUrl: "/Paulson_Alex_Fernandes_Resume.pdf",
+  // Drop your headshot into /public with this exact name (or change the path).
+  // A portrait crop (roughly 4:5) looks best. Until the file exists,
+  // the driver card shows your initials instead.
+  photoUrl: "/profile.jpg",
   status: "online",
 };
 

@@ -15,6 +15,8 @@ export interface PersonalInfo {
   githubUrl: string;
   linkedinUrl: string;
   resumeUrl: string;
+  /** Path to your headshot inside /public, e.g. "/profile.jpg". */
+  photoUrl?: string;
   status: SystemStatus;
 }
 
