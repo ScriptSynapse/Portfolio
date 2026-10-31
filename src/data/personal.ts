@@ -29,7 +29,7 @@ export const personal: PersonalInfo = {
     "Computer Science undergraduate specializing in Cybersecurity and Digital Forensics, with hands-on experience in software development and security analysis. Developed practical projects in malware detection, network security, digital forensics, and database management.",
   bio:
     "Computer Science student building at the intersection of cybersecurity, artificial intelligence and software engineering. Focused on cloud security posture, threat detection, and practical tools that help teams find and fix risk faster — from penetration-testing labs to AI copilots that explain findings in plain language. Comfortable moving between offense (CTFs, network analysis) and defense (SIEM, monitoring, remediation), with a growing interest in applying machine learning to anomaly and threat detection.",
-  email: "azurepaulson06@gmail.com",
+  email: "paulsonfernandes.dev@gmail.com",
   githubUrl: "https://github.com/ScriptSynapse",
   githubHandle: "ScriptSynapse",
   linkedinUrl: "https://www.linkedin.com/in/paulson-fernandes-754710378",
