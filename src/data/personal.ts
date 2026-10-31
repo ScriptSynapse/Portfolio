@@ -5,7 +5,7 @@ import type { PersonalInfo } from "../types/portfolio";
  * Every value here was taken from the previous portfolio data or from
  * public/Paulson_Alex_Fernandes_Resume.pdf. Change values here, not in components.
  *
- * LinkedIn URL matches the resume PDF (the hyphenated variant 404s).
+ * LinkedIn URL copied from the live profile by owner (31 Oct 2026).
  * NOTE: the resume PDF lists a different email (paulsonfernandes.dev@gmail.com)
  * than the value below, which was kept from the previous site. Pick one and update.
  */
@@ -29,10 +29,10 @@ export const personal: PersonalInfo = {
     "Computer Science undergraduate specializing in Cybersecurity and Digital Forensics, with hands-on experience in software development and security analysis. Developed practical projects in malware detection, network security, digital forensics, and database management.",
   bio:
     "Computer Science student building at the intersection of cybersecurity, artificial intelligence and software engineering. Focused on cloud security posture, threat detection, and practical tools that help teams find and fix risk faster — from penetration-testing labs to AI copilots that explain findings in plain language. Comfortable moving between offense (CTFs, network analysis) and defense (SIEM, monitoring, remediation), with a growing interest in applying machine learning to anomaly and threat detection.",
-  email: "azurepaulson06@gmail.com",
+  email: "paulsonfernandes.dev@gmail.com",
   githubUrl: "https://github.com/ScriptSynapse",
   githubHandle: "ScriptSynapse",
-  linkedinUrl: "https://www.linkedin.com/in/paulson-alex-fernandes754710378",
+  linkedinUrl: "https://www.linkedin.com/in/paulson-alex-fernandes-754710378",
   websiteUrl: "https://portfolio.paulsonfernandes.tech/",
   resumeUrl: "/Paulson_Alex_Fernandes_Resume.pdf",
   resumeFileName: "Paulson_Alex_Fernandes_Resume.pdf",
