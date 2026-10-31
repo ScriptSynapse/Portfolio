@@ -5,9 +5,9 @@ import type { PersonalInfo } from "../types/portfolio";
  * Every value here was taken from the previous portfolio data or from
  * public/Paulson_Alex_Fernandes_Resume.pdf. Change values here, not in components.
  *
+ * LinkedIn URL confirmed by owner (31 Oct 2026).
  * NOTE: the resume PDF lists a different email (paulsonfernandes.dev@gmail.com)
- * and LinkedIn URL (linkedin.com/in/paulson-alex-fernandes754710378) than the
- * values below, which were kept from the previous site. Pick one and update.
+ * than the value below, which was kept from the previous site. Pick one and update.
  */
 export const personal: PersonalInfo = {
   name: "Paulson Alex Fernandes",
@@ -32,7 +32,7 @@ export const personal: PersonalInfo = {
   email: "paulsonfernandes.dev@gmail.com",
   githubUrl: "https://github.com/ScriptSynapse",
   githubHandle: "ScriptSynapse",
-  linkedinUrl: "https://www.linkedin.com/in/paulson-fernandes-754710378",
+  linkedinUrl: "https://www.linkedin.com/in/paulson-alex-fernandes-754710378",
   websiteUrl: "https://portfolio.paulsonfernandes.tech/",
   resumeUrl: "/Paulson_Alex_Fernandes_Resume.pdf",
   resumeFileName: "Paulson_Alex_Fernandes_Resume.pdf",
