@@ -1,62 +1,58 @@
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "../ui/BrandIcons";
+import { ArrowUp, Mail } from "lucide-react";
 import { personal } from "../../data/personal";
-import { totalLaps } from "../../data/navigation";
+import { buildDate, site } from "../../data/site";
+import { formatDate } from "../../lib/format";
+import { goToSection, navigate } from "../../lib/router";
+import { BrandMark, GithubIcon, LinkedinIcon } from "../ui/BrandIcons";
 
 export function Footer() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [complete, setComplete] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setComplete(true);
-      },
-      { threshold: 0.6 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <footer ref={ref} className="relative border-t border-line bg-carbon py-16">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-8 pb-10 border-b border-line">
-          <div>
-            <div className="text-display text-2xl font-bold text-ink">{personal.name.toUpperCase()}</div>
-            <div className="text-mono text-xs tracking-[0.25em] text-grey mt-2">
-              {personal.disciplines.join(" × ").toUpperCase()}
+    <footer className="no-print relative border-t border-line bg-bg-2/40">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+          <div className="flex items-start gap-4">
+            <BrandMark />
+            <div>
+              <p className="font-display text-lg font-semibold text-text">{personal.fullName}</p>
+              <p className="mt-1 max-w-sm text-sm text-text-2">{personal.tagline}</p>
             </div>
           </div>
-          <div className="flex items-center gap-5">
-            <a href={personal.githubUrl} target="_blank" rel="noreferrer" aria-label="GitHub" className="text-grey hover:text-ink transition-colors">
-              <GithubIcon className="h-[18px] w-[18px]" />
+          <div className="flex flex-wrap items-center gap-2">
+            <a href={personal.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)" className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line text-text-2 transition-colors hover:border-accent hover:text-accent">
+              <GithubIcon className="h-4 w-4" />
             </a>
-            <a href={personal.linkedinUrl} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="text-grey hover:text-ink transition-colors">
-              <LinkedinIcon className="h-[18px] w-[18px]" />
+            <a href={personal.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)" className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line text-text-2 transition-colors hover:border-accent hover:text-accent">
+              <LinkedinIcon className="h-4 w-4" />
             </a>
-            <a href={`mailto:${personal.email}`} aria-label="Email" className="text-grey hover:text-ink transition-colors">
-              <Mail size={18} />
+            <a href={`mailto:${personal.email}`} aria-label="Email" className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line text-text-2 transition-colors hover:border-accent hover:text-accent">
+              <Mail size={16} />
             </a>
+            <a
+              href="/resume"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/resume");
+                window.scrollTo({ top: 0 });
+              }}
+              className="ml-2 rounded-lg border border-line px-3 py-2 text-sm text-text-2 transition-colors hover:text-text"
+            >
+              Resume view
+            </a>
+            <button
+              type="button"
+              onClick={() => goToSection("home")}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line text-text-2 transition-colors hover:text-text"
+              aria-label="Back to top"
+            >
+              <ArrowUp size={16} />
+            </button>
           </div>
         </div>
-
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-8">
-          <span className="text-mono text-[10px] tracking-[0.2em] text-grey-dim">ENGINEERED WITH PRECISION.</span>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: complete ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-mono text-[10px] tracking-[0.3em] text-red flex items-center gap-3"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-red" />
-            SESSION COMPLETE — LAP {String(totalLaps).padStart(2, "0")} / {String(totalLaps).padStart(2, "0")}
-          </motion.div>
+        <div className="mt-10 flex flex-col gap-2 border-t border-line pt-6 font-mono text-[11px] text-text-3 sm:flex-row sm:items-center sm:justify-between">
+          <span>
+            © {buildDate.getFullYear()} {personal.fullName} · {site.product}
+          </span>
+          <span>Build {formatDate(buildDate)} · React · TypeScript · Three.js</span>
         </div>
       </div>
     </footer>

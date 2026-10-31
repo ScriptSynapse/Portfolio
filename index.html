@@ -1,29 +1,67 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Paulson Alex Fernandes — Cybersecurity &amp; Digital Forensics Portfolio</title>
+    <meta name="description" content="Portfolio of Paulson Alex Fernandes — Cybersecurity &amp; Digital Forensics student at MIT World Peace University building threat-intelligence, forensics, malware-analysis and applied-cryptography tools." />
+    <meta name="author" content="Paulson Alex Fernandes" />
+    <meta name="theme-color" content="#080B12" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="canonical" href="https://portfolio.paulsonfernandes.tech/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Paulson Alex Fernandes — Cybersecurity × Software × AI</title>
-    <meta name="description" content="Paulson Alex Fernandes is a Computer Science student engineering cybersecurity tools, AI-assisted security systems, and cloud-security software. Explore projects, experience, skills and certifications." />
-    <meta name="theme-color" content="#09090B" />
-
-    <meta name="keywords" content="Paulson Alex Fernandes, Cybersecurity, Computer Science, Software Development, AI, Machine Learning, Cloud Security, Cybersecurity Projects, Penetration Testing" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Paulson Alex Fernandes — Cybersecurity × Software × AI" />
-    <meta property="og:description" content="Computer Science student engineering cybersecurity tools, AI-assisted security systems, and cloud-security software." />
-
+    <meta property="og:site_name" content="Paulson Alex Fernandes — Portfolio" />
+    <meta property="og:image" content="https://portfolio.paulsonfernandes.tech/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Paulson Alex Fernandes — Cybersecurity &amp; Digital Forensics Student" />
+    <meta property="og:url" content="https://portfolio.paulsonfernandes.tech/" />
+    <meta property="og:title" content="Paulson Alex Fernandes — Operator // Portfolio OS" />
+    <meta property="og:description" content="Securing Systems. Investigating Threats. Building Intelligence. Projects in threat intelligence, digital forensics, malware analysis and applied cryptography." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Paulson Alex Fernandes — Cybersecurity × Software × AI" />
-    <meta name="twitter:description" content="Computer Science student engineering cybersecurity tools, AI-assisted security systems, and cloud-security software." />
+    <meta name="twitter:image" content="https://portfolio.paulsonfernandes.tech/og-image.png" />
+    <meta name="twitter:title" content="Paulson Alex Fernandes — Operator // Portfolio OS" />
+    <meta name="twitter:description" content="Securing Systems. Investigating Threats. Building Intelligence." />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Apply the saved theme before first paint to avoid a flash. -->
+    <script>
+      (function () {
+        try {
+          var p = localStorage.getItem("pf-theme");
+          var t = p === "light" || p === "dark" ? p : window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+          document.documentElement.dataset.theme = t;
+          if (t === "light") document.querySelector('meta[name="theme-color"]').setAttribute("content", "#F4F7FB");
+        } catch (e) {}
+      })();
+    </script>
+
+    <link rel="preload" href="/fonts/SpaceGrotesk-var.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="/fonts/Inter-var.woff" as="font" type="font/woff" crossorigin />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Paulson Alex Fernandes",
+        "url": "https://portfolio.paulsonfernandes.tech/",
+        "jobTitle": "Cybersecurity & Digital Forensics Student",
+        "knowsAbout": ["Cybersecurity", "Digital Forensics", "Threat Intelligence", "Malware Analysis", "Machine Learning"],
+        "address": { "@type": "PostalAddress", "addressLocality": "Pune", "addressCountry": "IN" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "MIT World Peace University" },
+        "sameAs": ["https://github.com/ScriptSynapse", "https://www.linkedin.com/in/paulson-fernandes-754710378"]
+      }
+    </script>
   </head>
   <body>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif; color: #f4f7fb; background: #080b12">
+        Paulson Alex Fernandes — Cybersecurity &amp; Digital Forensics portfolio. JavaScript is required for the interactive site.
+        <a style="color: #00d4ff" href="/Paulson_Alex_Fernandes_Resume.pdf">Download the resume (PDF)</a> ·
+        <a style="color: #00d4ff" href="https://github.com/ScriptSynapse">GitHub</a>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

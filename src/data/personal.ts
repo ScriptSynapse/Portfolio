@@ -1,39 +1,58 @@
-import type { PersonalInfo, StatItem } from "../types/portfolio";
+import type { PersonalInfo } from "../types/portfolio";
 
 /**
- * EDIT ME
- * ----------------------------------------------------------------
- * This is the single source of truth for personal / identity content.
- * Update the fields below to change what appears across the site —
- * no component files need to be touched.
- * ----------------------------------------------------------------
+ * EDIT ME — single source of truth for identity content.
+ * Every value here was taken from the previous portfolio data or from
+ * public/Paulson_Alex_Fernandes_Resume.pdf. Change values here, not in components.
+ *
+ * NOTE: the resume PDF lists a different email (paulsonfernandes.dev@gmail.com)
+ * and LinkedIn URL (linkedin.com/in/paulson-alex-fernandes754710378) than the
+ * values below, which were kept from the previous site. Pick one and update.
  */
 export const personal: PersonalInfo = {
-  name: "Paulson Fernandes",
-  firstName: "Paulson Alex",
+  name: "Paulson Alex Fernandes",
+  fullName: "Paulson Alex Fernandes",
+  firstName: "Paulson",
   lastName: "Fernandes",
-  driverNumber: "25",
   role: "Computer Science Student",
-  disciplines: ["Cybersecurity", "Software Engineering", "AI"],
+  designation: "Cybersecurity & Digital Forensics Student · AI Security Enthusiast",
+  tagline: "Securing Systems. Investigating Threats. Building Intelligence.",
+  disciplines: ["Cybersecurity", "Digital Forensics", "AI / ML", "Software Engineering"],
+  interests: ["Threat intelligence", "Malware analysis", "Digital forensics", "Applied cryptography"],
   location: "Pune, India",
-  education: "B.Tech in Computer Science and Engineering (Cybersecurity and Forensics), MIT-World Peace University — July 2025–Present",
+  education:
+    "B.Tech in Computer Science and Engineering (Cybersecurity and Forensics), MIT World Peace University — 2025–2029",
   currentFocus: "AI-assisted security tooling & cloud security",
+  // Shown in the hero and status panel. Edit to match what you are looking for.
+  availability: "Open to internships & collaboration",
+  summary:
+    "Computer Science undergraduate specializing in Cybersecurity and Digital Forensics, with hands-on experience in software development and security analysis. Developed practical projects in malware detection, network security, digital forensics, and database management.",
   bio:
-      "Computer Science student building at the intersection of cybersecurity, artificial intelligence and software engineering. Focused on cloud security posture, threat detection, and practical tools that help teams find and fix risk faster — from penetration-testing labs to AI copilots that explain findings in plain language. Comfortable moving between offense (CTFs, network analysis) and defense (SIEM, monitoring, remediation), with a growing interest in applying machine learning to anomaly and threat detection.",
+    "Computer Science student building at the intersection of cybersecurity, artificial intelligence and software engineering. Focused on cloud security posture, threat detection, and practical tools that help teams find and fix risk faster — from penetration-testing labs to AI copilots that explain findings in plain language. Comfortable moving between offense (CTFs, network analysis) and defense (SIEM, monitoring, remediation), with a growing interest in applying machine learning to anomaly and threat detection.",
   email: "azurepaulson06@gmail.com",
   githubUrl: "https://github.com/ScriptSynapse",
+  githubHandle: "ScriptSynapse",
   linkedinUrl: "https://www.linkedin.com/in/paulson-fernandes-754710378",
+  websiteUrl: "https://portfolio.paulsonfernandes.tech/",
   resumeUrl: "/Paulson_Alex_Fernandes_Resume.pdf",
-  // Drop your headshot into /public with this exact name (or change the path).
-  // A portrait crop (roughly 4:5) looks best. Until the file exists,
-  // the driver card shows your initials instead.
+  resumeFileName: "Paulson_Alex_Fernandes_Resume.pdf",
   photoUrl: "/profile.jpg",
-  status: "online",
+  languages: ["English (Full Professional)", "Hindi (Native)", "Konkani (Native)"],
+  // From the v3.0 brief (owner-stated interests — shown as interests, not skills).
+  technicalInterests: [
+    "Cybersecurity & information security",
+    "Digital forensics & incident response",
+    "Threat intelligence",
+    "Security operations (SOC)",
+    "AI/ML-powered security",
+    "Network security",
+    "Malware analysis",
+    "Cloud security",
+  ],
+  careerObjectives: [
+    "Cybersecurity internships",
+    "Security engineering opportunities",
+    "Digital forensics work",
+    "AI-driven security research and R&D",
+  ],
 };
-
-export const stats: StatItem[] = [
-  { label: "Projects", value: 3 },
-  { label: "Certifications", value: 5 },
-  { label: "Technologies", value: 18 },
-  { label: "CTFs / Labs", value: 12 },
-];

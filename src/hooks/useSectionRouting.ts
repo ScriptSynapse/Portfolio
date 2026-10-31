@@ -1,5 +1,6 @@
-import { useCallback, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { sections } from "../data/navigation";
+import { scrollToId } from "../lib/router";
 
 const validIds = new Set(sections.map((s) => s.id));
 
@@ -14,50 +15,52 @@ function idFromPath(pathname: string): string {
 }
 
 /**
- * Keeps the browser URL in sync with whichever section is on screen
- * (e.g. /driver, /projects) instead of leaving everything on "/".
- *
- * - On first load, once the intro is done, jumps straight to the section
- *   named in the URL (so a direct visit to /driver lands on Driver).
- * - While scrolling, mirrors the active section into the URL with
- *   replaceState so it never spams browser history.
- * - Exposes navigateToSection() for nav links, which does a real
- *   pushState so back/forward works, plus a smooth scroll.
- * - Listens for back/forward navigation and scrolls to match.
+ * Keeps the URL in sync with the visible section (/projects, /contact …)
+ * using replaceState so history isn't spammed, jumps to the section in the URL
+ * on load (deep links), and handles back/forward between sections.
+ * Preserved from the previous site and adapted to the new navigation.
  */
-export function useSectionRouting(activeId: string, ready: boolean) {
+export function useSectionRouting(activeId: string, active: boolean) {
+  // URL mirroring stays off until the deep-link jump has happened,
+  // otherwise the initial "home" state would overwrite /projects etc.
+  const settled = useRef(false);
+
   useEffect(() => {
-    if (!ready) return;
+    if (!active) {
+      settled.current = false;
+      return;
+    }
+    const id = idFromPath(window.location.pathname);
+    if (!id || id === "home") {
+      settled.current = true;
+      return;
+    }
+    // Jump instantly, then correct once late layout (fonts, lazy chunks) settles.
+    const t1 = window.setTimeout(() => scrollToId(id, "instant"), 60);
+    const t2 = window.setTimeout(() => scrollToId(id, "instant"), 450);
+    const t3 = window.setTimeout(() => (settled.current = true), 600);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.clearTimeout(t3);
+    };
+  }, [active]);
+
+  useEffect(() => {
+    if (!active || !settled.current) return;
     const path = pathForId(activeId);
     if (window.location.pathname !== path) {
       window.history.replaceState(window.history.state, "", path);
     }
-  }, [activeId, ready]);
+  }, [activeId, active]);
 
   useEffect(() => {
-    if (!ready) return;
-    const id = idFromPath(window.location.pathname);
-    if (id && id !== "home") {
-      document.getElementById(id)?.scrollIntoView({ behavior: "auto", block: "start" });
-    }
-    // Only run once, right when the intro finishes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready]);
-
-  useEffect(() => {
+    if (!active) return;
     const onPopState = () => {
-      const id = idFromPath(window.location.pathname) || "home";
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      const id = idFromPath(window.location.pathname);
+      if (id) scrollToId(id);
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
-  }, []);
-
-  const navigateToSection = useCallback((id: string) => {
-    if (!validIds.has(id)) return;
-    window.history.pushState({ sectionId: id }, "", pathForId(id));
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
-
-  return { navigateToSection };
+  }, [active]);
 }

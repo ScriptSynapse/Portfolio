@@ -1,0 +1,19 @@
+rules_version = '2';
+// Contact form: anyone may CREATE a well-formed message; nobody can read,
+// update or delete from the client. Read messages in the Firebase console.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /contactMessages/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'subject', 'message', 'createdAt', 'source'])
+        && request.resource.data.name is string && request.resource.data.name.size() >= 2 && request.resource.data.name.size() <= 80
+        && request.resource.data.email is string && request.resource.data.email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$') && request.resource.data.email.size() <= 120
+        && request.resource.data.subject is string && request.resource.data.subject.size() >= 3 && request.resource.data.subject.size() <= 120
+        && request.resource.data.message is string && request.resource.data.message.size() >= 10 && request.resource.data.message.size() <= 2000
+        && request.resource.data.createdAt == request.time;
+      allow read, update, delete: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

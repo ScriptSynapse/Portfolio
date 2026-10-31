@@ -1,95 +1,168 @@
-export type SystemStatus = "online" | "development" | "learning" | "active" | "planned";
+/**
+ * Shared content types for OPERATOR // PORTFOLIO OS.
+ * All content lives in src/data/* — components only render it.
+ * Optional fields are hidden by the UI when empty, so never fill them
+ * with placeholder or unverified information.
+ */
 
 export interface PersonalInfo {
   name: string;
+  fullName: string;
   firstName: string;
   lastName: string;
-  driverNumber: string;
   role: string;
+  designation: string;
+  tagline: string;
   disciplines: string[];
+  interests: string[];
   location: string;
   education: string;
   currentFocus: string;
+  availability: string;
+  summary: string;
   bio: string;
   email: string;
   githubUrl: string;
+  githubHandle: string;
   linkedinUrl: string;
+  websiteUrl?: string;
   resumeUrl: string;
-  /** Path to your headshot inside /public, e.g. "/profile.jpg". */
+  resumeFileName: string;
   photoUrl?: string;
-  status: SystemStatus;
+  languages: string[];
+  /** Areas of interest (not claimed expertise). */
+  technicalInterests: string[];
+  /** What you are looking for next. */
+  careerObjectives: string[];
 }
 
-export type ProjectCategory = "SECURITY" | "AI" | "CLOUD" | "SOFTWARE";
+export type ProjectCategory = "cybersecurity" | "forensics" | "ai-ml" | "software";
+
+export type ProjectStatus = "active" | "maintained" | "prototype" | "archived";
+
+export interface ArchitectureNode {
+  id: string;
+  label: string;
+  detail: string;
+  /** Position in a 100 × 60 viewBox. */
+  x: number;
+  y: number;
+  kind?: "client" | "service" | "data" | "external" | "worker";
+}
+
+export interface ArchitectureEdge {
+  from: string;
+  to: string;
+  label?: string;
+}
+
+export interface ProjectFigure {
+  src: string;
+  alt: string;
+  caption: string;
+}
 
 export interface Project {
   id: string;
   title: string;
+  shortTitle: string;
   tagline: string;
   description: string;
-  category: ProjectCategory[];
-  image?: string;
-  engineClass: string; // "CLASS" label
-  engine: string; // primary language/runtime
-  intelligence?: string; // AI/ML descriptor
-  status: SystemStatus;
+  categories: ProjectCategory[];
+  /** Primary discipline shown on the card. */
+  domain: string;
+  icon: "honeypot" | "forensics" | "malware" | "vault" | "vpn";
+  /** Only set when verified. */
+  status?: ProjectStatus;
   technologies: string[];
-  githubUrl?: string;
+  githubUrl: string;
   demoUrl?: string;
+  /** Short note shown next to the demo link, e.g. "sample data only". */
+  demoNote?: string;
   featured?: boolean;
+  priority: number;
+  problem: string;
+  solution: string;
+  implementation: string[];
+  features: string[];
+  challenges: string[];
+  /** Measured outcomes taken from the project's own docs or tests. */
+  results?: string[];
+  /** What is not (yet) implemented — stated, never hidden. */
+  limitations?: string[];
+  /** Planned work. Never presented as an existing capability. */
+  future?: string[];
+  architecture?: {
+    caption: string;
+    nodes: ArchitectureNode[];
+    edges: ArchitectureEdge[];
+  };
+  figures?: ProjectFigure[];
 }
 
-export interface ExperienceEntry {
+export type TimelineKind = "education" | "experience" | "leadership";
+
+export interface TimelineEntry {
   id: string;
-  season: string; // e.g. "2025 SEASON"
+  kind: TimelineKind;
+  period: string;
+  /** ISO-ish sortable date (YYYY-MM). */
+  sortKey: string;
   role: string;
   organisation: string;
+  location?: string;
   description: string;
   responsibilities: string[];
-  technologies: string[];
+  technologies?: string[];
+  /** Short impact tags shown on leadership cards. */
+  highlights?: string[];
 }
 
-export type SkillLevel = "LEARNING" | "WORKING KNOWLEDGE" | "PROFICIENT" | "ADVANCED";
-
-export interface Skill {
+export interface ArsenalItem {
   name: string;
-  level: SkillLevel;
+  usage: string;
+  /** Project ids this skill is demonstrated in. */
+  projects?: string[];
+  /** Non-project evidence, e.g. "Internship", "Coursework". */
+  evidence?: string[];
+  level?: "FAMILIAR" | "WORKING KNOWLEDGE" | "PROFICIENT";
 }
 
-export interface SkillCategory {
+export interface ArsenalCategory {
   id: string;
   label: string;
-  skills: Skill[];
+  icon: "code" | "radar" | "activity" | "fingerprint" | "brain" | "network" | "layers" | "database" | "monitor" | "cloud";
+  description: string;
+  items: ArsenalItem[];
 }
 
 export interface Certification {
   id: string;
   name: string;
   issuer: string;
-  date: string;
-  credentialUrl?: string;
+  date?: string;
   skills: string[];
+  /** Full-size image inside /public, e.g. "/certification-images/paloalto-csf.webp". */
+  image?: string;
+  /** Small card thumbnail (falls back to `image`). */
+  thumb?: string;
+  /** Credential / certificate ID printed on the certificate. */
+  credentialId?: string;
+  credentialUrl?: string;
 }
 
-export interface DevelopmentItem {
+export interface Achievement {
   id: string;
   title: string;
-  status: SystemStatus;
-  phase?: string;
+  organisation: string;
+  date?: string;
+  category: "hackathon" | "leadership" | "recognition" | "workshop";
+  description: string;
+  highlights: string[];
+  /** Short rank badge, e.g. "1st" or "Top 10". */
+  rank?: string;
+  /** Award / certificate image in /public, shown with a preview modal. */
+  image?: string;
+  verificationUrl?: string;
 }
 
-export interface MachineSystem {
-  id: string;
-  label: string; // e.g. ENGINE
-  mapsTo: string; // e.g. Programming
-  technologies: string[];
-  // position on the blueprint, in percent (0-100) for x/y
-  x: number;
-  y: number;
-}
-
-export interface StatItem {
-  label: string;
-  value: number;
-  suffix?: string;
-}

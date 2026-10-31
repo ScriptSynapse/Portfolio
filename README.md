@@ -1,284 +1,130 @@
-# 🏎️ Paulson Fernandes | Portfolio
+# OPERATOR // PORTFOLIO OS — v3.0
 
-A modern, interactive developer portfolio combining **Cybersecurity, Software Engineering, Artificial Intelligence, and Cloud Security** with a visual experience inspired by motorsport engineering, telemetry, precision, and speed.
+Portfolio of **Paulson Alex Fernandes** — Cybersecurity · Digital Forensics · AI / ML · Software Engineering.
 
-The portfolio is designed to feel like an engineering command centre rather than a traditional portfolio, using telemetry-inspired interfaces, technical layouts, animations, and interactive elements to showcase my projects, experience, skills, and certifications.
+> *Securing Systems. Investigating Threats. Building Intelligence.*
 
-> **Note:** The motorsport-inspired visuals in this project are original. This portfolio does not use official Formula 1 branding, team logos, liveries, or copyrighted motorsport assets.
-
----
-
-## ✨ Features
-
-* 🏁 Motorsport-inspired engineering interface
-* 🚦 Animated starting-light introduction
-* 📊 Telemetry-inspired visual elements
-* 🛡️ Cybersecurity-focused project showcase
-* 💻 Interactive project filtering
-* 🏆 Certifications showcase
-* 🧠 Skills and technology dashboard
-* 🕒 Experience timeline
-* 📱 Fully responsive layout
-* ✨ Smooth animations and transitions
-* ⌨️ Keyboard-accessible navigation
-* ♿ Reduced-motion accessibility support
-* 📡 Integrated contact form
-* 🏎️ Hidden DRS easter egg
+A security-operations-centre style portfolio: an interactive 3D network globe, dashboard panels, project case studies with explorable architecture diagrams, a relationship graph, a working terminal, a command palette and a printable resume mode — in dark, light and system themes.
 
 ---
 
-## 🛠️ Tech Stack
+Full documentation lives in [`/docs`](docs/) — start with `PROJECT_AUDIT.md` and `CONTENT_REQUIREMENTS.md`.
 
-| Technology          | Purpose                                  |
-| ------------------- | ---------------------------------------- |
-| **React 19**        | Component-based frontend                 |
-| **TypeScript**      | Type-safe development                    |
-| **Vite**            | Development and production build tooling |
-| **Tailwind CSS v4** | Styling and responsive design            |
-| **Framer Motion**   | Animations and transitions               |
-| **Lucide React**    | Interface icons                          |
+## Features
 
----
+| Area | What it does |
+|---|---|
+| **Boot screen** | "Portfolio OS" boot sequence: progress ring tied to real loading (fonts + 3D chunk), log lines built from real data, decrypting name, shutter reveal. Once per session, skippable with any key/click, never shown with reduced motion. Add `?boot=1` to the URL to replay it |
+| **Hero** | Identity, CTAs, a Three.js network globe (decorative, not live data) with an SVG fallback, system-status and operator-metrics panels |
+| **Projects** | Category filters, animated cards, dedicated case-study pages (`/projects/<id>`) with problem, solution, interactive architecture diagram, implementation, features, figures and challenges |
+| **Technical arsenal** | Skills grouped by domain, each with how it was used and links to the projects that demonstrate it — no percentage bars |
+| **Intelligence graph** | Clickable graph of technologies → projects → domains |
+| **Experience & leadership** | Internship case card with scroll-drawn progress, plus leadership roles |
+| **Credentials vault** | Achievements + certifications with image preview modal and verification links |
+| **Contact** | Validated form → Firestore (optional) or Formspree, honeypot + timing + cooldown spam protection |
+| **Command palette** | `Ctrl + K` / `⌘ K` — sections, projects, resume, theme, links |
+| **Terminal** | `help`, `whoami`, `about`, `projects [id]`, `skills`, `experience`, `certifications`, `contact`, `resume`, `goto`, `theme`, `clear` |
+| **Resume mode** | `/resume` — clean HTML resume generated from the same data, print-ready, plus PDF download |
+| **Themes** | Dark / Light / System, persisted in `localStorage`, applied before first paint |
 
-## 📁 Project Structure
+Every number on the site (projects, tools, certifications…) is **computed from the data files** — nothing is typed in by hand.
 
-```text
-Portfolio/
-│
-├── public/
-│
-├── src/
-│   ├── components/
-│   ├── data/
-│   │   ├── personal.ts
-│   │   ├── projects.ts
-│   │   ├── experience.ts
-│   │   ├── skills.ts
-│   │   ├── systems.ts
-│   │   └── navigation.ts
-│   │
-│   └── main.tsx
-│
-├── .env.example
-├── index.html
-├── package.json
-└── README.md
-```
+## Tech stack
 
-Portfolio content is separated from the UI through files inside `src/data/`, making projects, skills, experience, certifications, and personal information easier to maintain.
+React 19 · TypeScript · Vite 8 · Tailwind CSS v4 · Framer Motion · Three.js · Lucide · Firestore REST API (optional)
 
----
+Fonts (Space Grotesk, Inter, JetBrains Mono) are self-hosted from `public/fonts` as Latin-subset variable WOFF files (SIL OFL) — no Google Fonts request.
 
-## 🚀 Getting Started
+Plain Three.js is used instead of React Three Fiber: the globe is a single self-contained scene, so one dependency is lighter and simpler. The globe is code-split and only downloaded when needed. The contact form talks to Firestore over its REST API, so the Firebase SDK (and its large dependency tree) is not installed.
 
-### Prerequisites
-
-Make sure you have **Node.js** and **npm** installed.
-
-Check your installation:
-
-```bash
-node --version
-npm --version
-```
-
-### Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/ScriptSynapse/Portfolio.git
-```
-
-Navigate into the project:
-
-```bash
-cd Portfolio
-```
-
-Install dependencies:
+## Getting started
 
 ```bash
 npm install
+npm run dev        # http://localhost:5173
+npm run lint       # oxlint
+npm run build      # type-check + production build into dist/
+npm run preview    # serve the production build
 ```
 
-Start the development server:
+Node 20.19+ (or 22.12+) is required by Vite 8.
 
-```bash
-npm run dev
-```
+## Editing content
 
-Open the local address displayed by Vite in your browser.
+All content lives in `src/data/` — components never need to change.
 
----
+| File | Controls |
+|---|---|
+| `personal.ts` | Name, designation, tagline, bio, education, links, availability, "currently building" |
+| `projects.ts` | Projects, categories, case-study content, architecture diagrams, figures, demo links |
+| `skills.ts` | Technical arsenal (with usage notes and project links) |
+| `experience.ts` | Timeline entries |
+| `credentials.ts` | Certifications (add `image` / `credentialUrl`) and achievements |
+| `navigation.ts` | Section order and navigation labels |
 
-## ⚙️ Customising the Portfolio
+Assets:
 
-Most portfolio information can be changed without modifying the main UI components.
+* Resume → `public/Paulson_Alex_Fernandes_Resume.pdf` (path set in `personal.ts`)
+* Certificate images → `public/certification-images/` then set `image` in `credentials.ts`
+* Project screenshots → `public/project-images/` (WebP recommended) then add to `figures` in `projects.ts`
 
-Content is stored inside:
+## Environment configuration
+
+Copy `.env.example` to `.env`. All variables are optional.
+
+| Variable | Purpose |
+|---|---|
+| `VITE_FORM_ENDPOINT` | Contact-form endpoint. Defaults to the existing Formspree form |
+| `VITE_FIREBASE_API_KEY`, `VITE_FIREBASE_PROJECT_ID` | Enable Firestore delivery of contact messages (collection `contactMessages`) |
+
+Security notes:
+
+* Only `VITE_*` variables reach the browser — never put private secrets in them.
+* Firebase web config identifies your project but does not protect it; **deploy `firestore.rules`** (`firebase deploy --only firestore:rules`) before enabling Firestore. The rules allow creating well-formed messages only and block all reads/updates/deletes from the client.
+* In Google Cloud Console, restrict the Firebase browser API key to your domains (HTTP referrers).
+* `.env` and `.env.*` are git-ignored.
+
+## Deployment (Vercel)
+
+1. Import the repository at vercel.com/new — framework preset **Vite** (build `npm run build`, output `dist`).
+2. Add any environment variables from `.env.example` in *Project → Settings → Environment Variables*.
+3. Deploy. `vercel.json` rewrites every path to `index.html` (so `/projects/honeywatch` and `/resume` work) and adds security and caching headers.
+
+Any static host works the same way as long as unknown paths fall back to `index.html` (Netlify: `/* /index.html 200`).
+
+## Accessibility & performance
+
+* Semantic landmarks, skip link, visible focus states, labelled controls, focus-trapped dialogs
+* Full keyboard support: navigation, palette, filters, timeline, graph and architecture nodes
+* `prefers-reduced-motion` respected everywhere — the globe renders a single static frame
+* Globe pauses when off-screen or the tab is hidden, caps device-pixel-ratio, reduces detail on small / low-power devices and falls back to SVG without WebGL or with data-saver on
+* Light and dark palettes were chosen for WCAG AA text contrast
+
+## Project structure
 
 ```text
-src/data/
+src/
+├── App.tsx                  route switch (home · /projects/:id · /resume)
+├── main.tsx
+├── index.css                design tokens (dark/light), utilities, print styles
+├── data/                    all portfolio content
+├── types/portfolio.ts
+├── lib/                     theme, router, Firestore REST helper, url helpers
+├── hooks/                   active section, section routing, device quality, hotkeys…
+└── components/
+    ├── layout/              Navbar, ThemeToggle, CommandPalette, Footer, NotFound
+    ├── hero/                Hero, GlobeStage, NetworkGlobe (Three.js), GlobeFallback, StatusPanels
+    ├── sections/            About, Projects, Arsenal, RelationshipGraph, Experience (+ Leadership cards), Credentials, Contact
+    ├── project/             ProjectDetail, ArchitectureDiagram
+    ├── resume/              ResumeView
+    ├── features/            Terminal
+    └── ui/                  primitives (Panel, Tag, Section…), Modal, icons
 ```
 
-| File            | Controls                                                |
-| --------------- | ------------------------------------------------------- |
-| `personal.ts`   | Profile, bio, education, links and headline information |
-| `projects.ts`   | Projects, technologies, filters and project links       |
-| `experience.ts` | Experience timeline                                     |
-| `skills.ts`     | Skills and proficiency information                      |
-| `systems.ts`    | Certifications and additional portfolio content         |
-| `navigation.ts` | Navigation and section labels                           |
+## Author
 
-If your version contains fields such as:
+**Paulson Alex Fernandes** — B.Tech CSE (Cybersecurity and Forensics), MIT World Peace University · GitHub [@ScriptSynapse](https://github.com/ScriptSynapse)
 
-```text
-[ADD ...]
-```
+## License
 
-replace them with verified information before deploying the portfolio.
-
----
-
-## 📄 Resume
-
-Place your resume PDF inside:
-
-```text
-public/resume.pdf
-```
-
-The portfolio can then serve the resume directly through the **Download Resume** button.
-
----
-
-## 📡 Contact Form
-
-The contact section supports an external form endpoint.
-
-Create a `.env` file in the project root:
-
-```env
-VITE_FORM_ENDPOINT=your_form_endpoint
-```
-
-Use `.env.example` as the configuration template.
-
-For your own deployment, avoid committing `.env` files containing credentials, API keys, tokens, or other sensitive configuration.
-
----
-
-## 🏎️ Design Concept
-
-The portfolio takes inspiration from the engineering side of motorsport rather than functioning as a racing fan website.
-
-The visual system uses concepts such as:
-
-* Telemetry
-* Starting lights
-* Engineering dashboards
-* System readouts
-* Technical schematics
-* Performance indicators
-* Racing-inspired motion
-
-These elements represent the ideas behind both motorsport engineering and cybersecurity:
-
-**Precision. Performance. Engineering. Analysis. Security.**
-
----
-
-## 🎮 DRS Easter Egg
-
-There's a hidden interaction for desktop users.
-
-Press:
-
-```text
-D R S
-```
-
-The ambient telemetry temporarily accelerates, creating a small DRS-inspired effect.
-
----
-
-## ♿ Accessibility
-
-The portfolio includes several accessibility considerations:
-
-* Semantic HTML structure
-* Keyboard-accessible navigation
-* Visible focus states
-* Accessible project filters
-* Support for `prefers-reduced-motion`
-* Touch-friendly alternatives to desktop interactions
-* Graceful degradation of decorative animations
-
-Users who prefer reduced motion receive a static but fully functional experience.
-
----
-
-## ⚡ Performance
-
-The visual experience is primarily created using:
-
-* CSS
-* SVG
-* Tailwind CSS
-* Framer Motion
-
-Large background videos and unnecessary image-heavy assets are avoided to help keep the experience responsive.
-
----
-
-## 🔮 Future Improvements
-
-Planned improvements include:
-
-* [ ] Add portfolio screenshots
-* [ ] Add an animated preview GIF
-* [ ] Add automated deployment
-* [ ] Add GitHub Actions CI
-* [ ] Add Lighthouse performance monitoring
-* [ ] Expand project case studies
-* [ ] Add architecture diagrams for major projects
-* [ ] Add live project demos where available
-* [ ] Improve SEO and social sharing previews
-* [ ] Add automated testing
-
----
-
-## 👨‍💻 Author
-
-### Paulson Fernandes
-
-Computer Science student focused on:
-
-**Cybersecurity • Software Engineering • Artificial Intelligence • Cloud Security**
-
-GitHub: **@ScriptSynapse**
-
----
-
-## 📜 License
-
-This repository contains a personal portfolio and original design work.
-
-No open-source licence is currently specified. Unless a licence is added, the repository being publicly accessible should not be interpreted as permission to copy, redistribute, or reuse the project.
-
-If this project is later released for public reuse, an appropriate licence can be added.
-
----
-
-## ⭐ Support
-
-If you like the portfolio or find something useful in the project, consider giving the repository a **star**.
-
-It helps support the project and its future development.
-
----
-
-<p align="center">
-  <strong>Engineered with precision. Built for the web.</strong>
-</p>
+No open-source licence is specified. Unless one is added, public visibility of this repository is not permission to copy or reuse the code or design.
